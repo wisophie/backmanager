@@ -4,7 +4,7 @@ import {
   Aside, Main, Menu, Submenu, MenuItemGroup,
   MenuItem, Breadcrumb, BreadcrumbItem, Card,
   Row, Col, Table, TableColumn, Tooltip, Switch,
-  Pagination, Dialog, MessageBox
+  Pagination, Dialog, MessageBox, Tag
 } from 'element-ui'
 
 
@@ -37,6 +37,7 @@ const element = {
     Vue.use(Tooltip)
     Vue.use(Pagination)
     Vue.use(Dialog)
+    Vue.use(Tag)
   }
 }
 export default element
