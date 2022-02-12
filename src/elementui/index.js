@@ -4,7 +4,8 @@ import {
   Aside, Main, Menu, Submenu, MenuItemGroup,
   MenuItem, Breadcrumb, BreadcrumbItem, Card,
   Row, Col, Table, TableColumn, Tooltip, Switch,
-  Pagination, Dialog, MessageBox, Tag, Tree, Select, Option
+  Pagination, Dialog, MessageBox, Tag, Tree, Select, Option,
+  Alert, Step, Steps, Tabs, TabPane, Cascader,
 } from 'element-ui'
 
 
@@ -41,6 +42,13 @@ const element = {
     Vue.use(Tree)
     Vue.use(Select)
     Vue.use(Option)
+    Vue.use(Alert)
+    Vue.use(Step)
+    Vue.use(Steps)
+    Vue.use(Tabs)
+    Vue.use(TabPane)
+    Vue.use(Cascader)
+
   }
 }
 export default element

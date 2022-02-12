@@ -1,4 +1,6 @@
 import axios from "axios"
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 
 const request = axios.create({
@@ -8,6 +10,8 @@ const request = axios.create({
 
 //axios请求拦截器加入token
 request.interceptors.request.use(config => {
+  Nprogress.start()
+
   config.headers.Authorization = window.sessionStorage.getItem('token')
 
   return config;
@@ -17,6 +21,7 @@ request.interceptors.request.use(config => {
 
 //
 request.interceptors.response.use(response => {
+  Nprogress.done()
   // console.log(response, "response")
   if (response.data.code === 200) { }
   return response;
