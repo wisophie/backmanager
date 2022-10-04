@@ -9,7 +9,8 @@
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside :width="isCollapse?'64px':'200px'">
+        <div class="toggle-button" @click="toggleCollapse">|||</div>
         <el-menu
           background-color="#333744"
           text-color="#fff"
@@ -17,6 +18,8 @@
           :unique-opened="true"
           router
           :default-active="activepath"
+          :collapse='isCollapse'
+          :collapse-transition='false'
         >
           <el-submenu
             :index="item.id + ' '"
@@ -24,7 +27,7 @@
             :key="item.id"
           >
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i :class="iconslist[item.id]"></i>
               <span>{{ item.authName }}</span>
             </template>
 
@@ -58,7 +61,15 @@ export default {
   data() {
     return {
       menulist: [],
+      iconslist:{
+        '125':'el-icon-user-solid',
+        '103':'el-icon-s-tools',
+        '101':'el-icon-s-goods',
+        '102':'el-icon-s-claim',
+        '145':'el-icon-s-marketing',
+      },
       activepath: "",
+      isCollapse:false,//是否折叠
     };
   },
   methods: {
@@ -76,10 +87,14 @@ export default {
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
       this.menulist = res.data;
     },
+    //二级菜单处理高亮效果
     saveNavState(activePath) {
       window.sessionStorage.setItem("activepath", activePath);
       this.activepath = activePath;
     },
+    toggleCollapse(){
+      this.isCollapse=!this.isCollapse
+    }
   },
 };
 </script>
@@ -106,7 +121,8 @@ export default {
 }
 .el-aside {
   height: 100vh;
-  background-color: rgb(61, 59, 59);
+  background-color: #333744;
+  transition:0.3s;
   .el-menu {
     border-right: none;
   }
@@ -115,4 +131,14 @@ export default {
   flex-grow: 1;
   background-color: rgb(235, 235, 235);
 }
+.toggle-button{
+  background-color: #4A5064;
+  font-size: 10px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+}
+
 </style>
